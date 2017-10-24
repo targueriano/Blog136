@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+
+{% block content %}
+   <!-- content
+   ================================================== -->
+   <section id="content-wrap" class="site-page">
+   	<div class="row">
+   		<div class="col-twelve">
+
+   			<section>
+
+					<div class="primary-content">
+
+						<h1 class="entry-title add-bottom">Contate-me</h1>
+
+						<p class="lead">Por favor, entre em contato para sugerir ou em caso de dúvida,
+              pois responderei com paciência,
+              respeito e o mais breve possível.</p>
+
+
+						<div class="row">
+							<div class="col-six tab-full">
+								<h4>Where to Find Us</h4>
+					  			<p>
+					         Rio do Sul, SC<br>
+					         </p>
+
+							</div>
+
+							<div class="col-six tab-full">
+								<h4>Contact Info</h4>
+
+				   			<p>tbmeurer@gmail.com<br>
+                  meublog.edu.br
+							   	 <br>
+							   	Phone: (+55) 47 99631-8911
+							   </p>
+
+							</div>
+
+						</div>
+
+						<form name="cForm" id="cForm" method="post" action="">
+              {% csrf_token %}
+              {{ form.non_field_errors }}
+              <fieldset>
+
+                    <div class="form-field fieldWrapper">
+                      {{ form.nome.errors }}
+                   <input name="nome" type="text" id="id_nome" class="full-width" placeholder="Tu Nombre" value="">
+                    </div>
+
+                    <div class="form-field fieldWrapper">
+                      {{ form.email.errors }}
+                   <input name="email" type="text" id="id_email" class="full-width" placeholder="Tu correo electrónico" value="">
+                    </div>
+
+                    <div class="message form-field fieldWrapper">
+                      {{ form.texto.errors }}
+                   <textarea name="texto" type="text" id="id_texto" class="full-width" placeholder="Tu mensaje"></textarea>
+                    </div>
+
+                    <button type="submit" class="submit button-primary full-width-on-mobile">Submit</button>
+
+              </fieldset>
+
+  				 </form> <!-- end form -->
+
+				</section>
+
+
+			</div> <!-- end col-twelve -->
+   	</div> <!-- end row -->
+   </section> <!-- end content -->
+{% endblock %}

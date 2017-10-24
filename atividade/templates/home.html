@@ -1,0 +1,151 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+   <!-- masonry
+   ================================================== -->
+   <section id="bricks">
+
+   	<div class="row masonry">
+
+   		<!-- brick-wrapper -->
+         <div class="bricks-wrapper">
+
+         	<div class="grid-sizer"></div>
+
+         	<div class="brick entry featured-grid animate-this">
+         		<div class="entry-content">
+         			<div id="featured-post-slider" class="flexslider">
+			   			<ul class="slides">
+
+                <li>
+				   				<div class="featured-post-slide">
+
+						   			<div class="post-background" style="background-image:url('static/images/thumbs/single/libros.jpg');"></div>
+
+								   	<div class="overlay"></div>
+
+								   	<div class="post-content">
+								   		<ul class="entry-meta">
+												<li>Novembre, 2012</li>
+												<li><a href="#">Graduación en Historia</a></li>
+											</ul>
+
+								   		<h1 class="slide-title">
+                        <a href="single-standard.html" title=""> Uma mente precisa de livros como uma espada precisa de uma pedra de amolar
+                          para mantê-la afiada. Por isso eu leio tanto.(Tyrion Lannister)</a></h1>
+						   			</div>
+
+				   				</div>
+				   			</li> <!-- /slide -->
+
+                <li>
+				   				<div class="featured-post-slide">
+
+						   			<div class="post-background" style="background-image:url('static/images/thumbs/single/machine.jpg');"></div>
+
+								   	<div class="overlay"></div>
+
+								   	<div class="post-content">
+								   		<ul class="entry-meta">
+												<li>Marzo, 2017</li>
+												<li><a href="#" >Graduación en ciencias de la computación</a></li>
+											</ul>
+
+								   		<h1 class="slide-title">
+                        <a href="single-standard.html" title="">Só podemos ver pouco do futuro,
+                          mas o suficiente para perceber que há muito a fazer.(Alan Turing)
+                      </a>
+                      </h1>
+								   	</div>
+
+				   				</div>
+				   			</li> <!-- /slide -->
+
+
+				   			<li>
+				   				<div class="featured-post-slide">
+
+						   			<div class="post-background" style="background-image:url('static/images/thumbs/single/constru.jpg');"></div>
+
+								   	<div class="overlay"></div>
+								   	<div class="post-content">
+								   		<ul class="entry-meta">
+												<li>??, 20??</li>
+												<li><a href="#" class="author">Gradución em medicina</a></li>
+											</ul>
+
+								   		<h1 class="slide-title">
+                        <a href="single-standard.html" title="">
+                          Não se esqueça que o amor, tal como a medicina, é só a arte de ajudar a natureza.(Pierre Lacios)
+                        </a>
+                      </h1>
+						   			</div>
+
+				   				</div>
+				   			</li> <!-- end slide -->
+
+				   		</ul> <!-- end slides -->
+				   	</div> <!-- end featured-post-slider -->
+         		</div> <!-- end entry content -->
+         	</div>
+
+          {% for post in posts %}
+         	<article class="brick entry format-standard animate-this">
+
+               <div class="entry-thumb">
+                  <a href="single-standard.html" class="thumb-link">
+	                  <img src="{{ post.imagenes.url }}" alt="building">
+                  </a>
+               </div>
+
+               <div class="entry-text">
+               	<div class="entry-header">
+
+               		<div class="entry-meta">
+               			<span class="cat-links">
+               				<a href="#">{{post.genero}}</a>
+               				<a href="#">{{post.fecha_publicacion}}</a>
+               			</span>
+               		</div>
+
+               		<h1 class="entry-title"><a href="{% url 'post_detalhe' post.id %}">{{post.titulo}}</a></h1>
+
+               	</div>
+						<div class="entry-excerpt">
+							{{post.resumen}}
+						</div>
+
+               </div>
+
+        		</article> <!-- end article -->
+            {% endfor %}
+
+         </div> <!-- end brick-wrapper -->
+
+   	</div> <!-- end row -->
+
+   	<div class="row">
+
+      <div class="pagination">
+          <span class="step-links">
+              {% if posts.has_previous %}
+                  <a href="?page={{ posts.previous_page_number }}">anterior</a>
+              {% endif %}
+
+              <span class="page-numbers current">
+                  Página {{ posts.number }} de {{ posts.paginator.num_pages }}.
+              </span>
+
+              {% if posts.has_next %}
+                  <a href="?page={{ posts.next_page_number }}">próxima</a>
+              {% endif %}
+          </span>
+      </div>
+
+
+   	</div>
+
+   </section> <!-- end bricks -->
+
+{% endblock %}

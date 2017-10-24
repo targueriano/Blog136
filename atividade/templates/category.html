@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+
+{% block content %}
+   <!-- page header
+   ================================================== -->
+   <section id="page-header">
+   	<div class="row current-cat">
+   		<div class="col-full">
+   			<h1>Categoría: {{cat}}</h1>
+   		</div>
+   	</div>
+   </section>
+
+
+   <!-- masonry
+   ================================================== -->
+   <section id="bricks" class="with-top-sep">
+
+   	<div class="row masonry">
+
+   		<!-- brick-wrapper -->
+         <div class="bricks-wrapper">
+
+         	<div class="grid-sizer"></div>
+
+          {% for post in posts %}
+         	<article class="brick entry format-standard animate-this">
+
+               <div class="entry-thumb">
+                  <a href="single-standard.html" class="thumb-link">
+	                  <img src="{{ post.imagenes.url }}" alt="building">
+                  </a>
+               </div>
+
+               <div class="entry-text">
+               	<div class="entry-header">
+
+               		<div class="entry-meta">
+               			<span class="cat-links">
+               				<a href="#">{{post.genero}}</a>
+               				<a href="#">{{post.fecha_publicacion}}</a>
+               			</span>
+               		</div>
+
+               		<h1 class="entry-title"><a href="{% url 'post_detalhe' post.id %}">{{post.titulo}}</a></h1>
+
+               	</div>
+						<div class="entry-excerpt">
+							{{post.resumen}}
+						</div>
+
+               </div>
+
+        		</article> <!-- end article -->
+            {% endfor %}
+
+
+         </div> <!-- end brick-wrapper -->
+
+   	</div> <!-- end row -->
+
+    <div class="row">
+
+      <div class="pagination">
+          <span class="step-links">
+              {% if posts.has_previous %}
+                  <a href="?page={{ posts.previous_page_number }}">anterior</a>
+              {% endif %}
+
+              <span class="page-numbers current">
+                  Página {{ posts.number }} de {{ posts.paginator.num_pages }}.
+              </span>
+
+              {% if posts.has_next %}
+                  <a href="?page={{ posts.next_page_number }}">próxima</a>
+              {% endif %}
+          </span>
+      </div>
+
+
+   	</div>
+
+
+   </section> <!-- bricks -->
+
+
+  {% endblock %}
